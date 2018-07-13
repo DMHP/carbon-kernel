@@ -3473,6 +3473,8 @@ public abstract class AbstractUserStoreManager implements UserStoreManager, Pagi
                 if (internalRole && listener instanceof AbstractUserOperationEventListener) {
                     success = ((AbstractUserOperationEventListener) listener).doPostUpdateInternalRoleName(roleName,
                             newRoleName, this);
+                } else if (internalRole && !(listener instanceof AbstractUserOperationEventListener)) {
+                    success = true;
                 } else if (!internalRole) {
                     success = listener.doPostUpdateRoleName(roleName, newRoleName, this);
                 }
